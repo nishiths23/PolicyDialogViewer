@@ -1,0 +1,2 @@
+rootProject.name='PolicyDialogViewer'
+include ':app', ':library'
