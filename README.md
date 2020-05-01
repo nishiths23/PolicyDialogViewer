@@ -11,17 +11,19 @@ Simple dialog to display privacy policy and terms and conditions.
 Add this to your `dependencies` block in `build.gradle`:
 
 ```groovy
-implementation 'de.cketti.mailto:email-intent-builder:2.0.0'
+
+implementation 'com.github.nishiths23:PolicyDialogViewer:1.0'
+
 ```
 Add it in your root build.gradle at the end of repositories:
 
 ```groovy
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 ## Include the library
