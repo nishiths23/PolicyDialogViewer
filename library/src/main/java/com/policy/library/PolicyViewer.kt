@@ -11,8 +11,8 @@ import android.view.View
 import android.view.Window
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.custom_dialog_layout.*
 
 
 class PolicyViewer(context: Context, private val url: String) : Dialog(context) {
@@ -21,6 +21,7 @@ class PolicyViewer(context: Context, private val url: String) : Dialog(context) 
     private val DIMENSIONS_DIFF_PORTRAIT = floatArrayOf(40f, 60f)
 
     private var mContent: LinearLayout? = null
+    private var webView: WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +43,18 @@ class PolicyViewer(context: Context, private val url: String) : Dialog(context) 
             )
         )
         window?.attributes?.windowAnimations = R.style.DialogAnimation
-        closeButton.setOnClickListener { dismiss() }
+        val closeButton = findViewById<Button?>(R.id.closeButton)
+        closeButton?.setOnClickListener { dismiss() }
+
+        webView = findViewById(R.id.webView)
     }
 
     private fun setUpWebView() {
-        webView.webViewClient = DialogWebViewClient()
-        webView.settings.javaScriptEnabled = true
-        webView.loadUrl(url)
+        webView?.let {
+            it.webViewClient = DialogWebViewClient()
+            it.settings.javaScriptEnabled = true
+            it.loadUrl(url)
+        }
     }
 
     private class DialogWebViewClient : WebViewClient() {
